@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/ui/layout/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "300", "500", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Simple Crypto Tracker",
@@ -16,9 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <Navbar />
-        {children}
+
+        <main className="container items-center justify-between px-1 pt-16 sm:px-16 sm:pt-20">
+          {children}
+        </main>
       </body>
     </html>
   );
