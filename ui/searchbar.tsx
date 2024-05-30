@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { CircleX, Search } from "lucide-react";
 import React, { useState } from "react";
 
-interface SearchbarType {
+interface SearchbarProps {
   isSearchOpen: boolean;
   searchToggle: () => void;
   cName?: string;
@@ -16,7 +16,7 @@ export default function Searchbar({
   searchToggle,
   cName = "",
   onSearch = () => {},
-}: SearchbarType) {
+}: SearchbarProps) {
   const [value, setValue] = useState<string>("");
 
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -28,6 +28,7 @@ export default function Searchbar({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
+
   return (
     <div className={cn("flex w-full cursor-pointer flex-row", cName)}>
       <i
@@ -42,16 +43,17 @@ export default function Searchbar({
       >
         <Search size={isSearchOpen ? "20" : "25"} />
       </i>
-      {isSearchOpen && (
-        <input
-          type="text"
-          className={
-            "size-full bg-gray-500 p-2 text-sm text-white focus:outline-none"
-          }
-          onKeyDown={handleEnter}
-          onChange={handleChange}
-        />
-      )}
+
+      <input
+        type="text"
+        className={cn(
+          "size-full bg-gray-500 p-2 text-sm text-white focus:outline-none",
+          !isSearchOpen && "hidden",
+        )}
+        onKeyDown={handleEnter}
+        onChange={handleChange}
+      />
+
       {isSearchOpen && (
         <i
           className={cn(

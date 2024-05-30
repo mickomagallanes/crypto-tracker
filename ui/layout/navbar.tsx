@@ -6,7 +6,7 @@ import React, { ReactNode } from "react";
 import useToggle from "../hooks/useToggle";
 import Searchbar from "../searchbar";
 
-interface NavItemType {
+interface NavItemProps {
   href: string;
   label: string;
   icon: ReactNode;
@@ -22,8 +22,8 @@ export default function Navbar() {
     >
       <ul
         id="nav-menu"
-        className="fixed bottom-0 grid w-full grid-cols-3 border-t border-gray-200/65 pt-2 text-center sm:relative
-        sm:top-0 sm:flex sm:w-auto sm:flex-row sm:space-x-4 sm:border-none sm:text-lg"
+        className="fixed bottom-0 grid w-full grid-cols-3 border-t border-gray-200/65 pt-2 text-center text-lg sm:relative
+        sm:top-0 sm:flex sm:w-auto sm:flex-row sm:space-x-4 sm:border-none "
       >
         <NavItem href="/" icon={<Bitcoin />} label="Crypto" />
         <NavItem
@@ -49,7 +49,7 @@ export default function Navbar() {
   );
 }
 
-function NavItem({ href, label, icon }: NavItemType): ReactNode {
+function NavItem({ href, label, icon }: NavItemProps): ReactNode {
   return (
     <li>
       <i className="flex items-center justify-center sm:hidden">{icon}</i>
