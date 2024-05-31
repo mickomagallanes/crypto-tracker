@@ -3,8 +3,9 @@
 import { Bitcoin, BriefcaseBusiness, Newspaper } from "lucide-react";
 import Link from "next/link";
 import React, { ReactNode } from "react";
-import useToggle from "../hooks/useToggle";
-import Searchbar from "../searchbar";
+import useToggle from "./hooks/useToggle";
+import Searchbar from "./generic/searchbar";
+import { usePathname, useRouter } from "next/navigation";
 
 interface NavItemProps {
   href: string;
@@ -14,6 +15,12 @@ interface NavItemProps {
 
 export default function Navbar() {
   const [isSearchOpen, searchToggle] = useToggle();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  function handleSearch(val: string) {
+    router.push(`${pathname}?search=${val}`);
+  }
 
   return (
     <nav
@@ -42,7 +49,7 @@ export default function Navbar() {
           cName="justify-end"
           isSearchOpen={isSearchOpen}
           searchToggle={searchToggle}
-          onSearch={(e) => console.log(e)}
+          onSearch={handleSearch}
         />
       </div>
     </nav>

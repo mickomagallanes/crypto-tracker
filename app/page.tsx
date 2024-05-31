@@ -1,9 +1,6 @@
 // "use client";
-import { GET_OPTIONS, cn } from "@/lib/utils";
-import Table, { TableColumn } from "@/ui/table";
-import Image from "next/image";
-
-import { ReactNode } from "react";
+import { GET_OPTIONS } from "@/lib/utils";
+import HomeTable from "@/ui/home-table";
 
 interface Roi {
   times: numOrNull;
@@ -62,78 +59,24 @@ const transformData = (data: ApiData[]): TransformedData[] => {
   }));
 };
 
-const cryptoColumns: TableColumn[] = [
-  { header: "#", key: "id" },
-  {
-    header: "Name",
-    key: "name",
-    customRender: (dataRow): ReactNode => {
-      return (
-        <>
-          <div className="flex flex-row gap-2">
-            <Image
-              src={dataRow.image}
-              alt="Crypto logo"
-              width={24}
-              height={24}
-            />
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { search: string };
+}) {
+  const searchQuery = searchParams.search ? `ids=${searchParams.search}&` : "";
 
-            <p>{dataRow.name}</p>
-            <p>{dataRow.symbol}</p>
-          </div>
-        </>
-      );
-    },
-  },
-  {
-    header: "24h %",
-    key: "24h",
-    customRender: (dataRow): ReactNode => {
-      return (
-        <>
-          <p
-            className={cn(
-              dataRow["24h"] < 0 ? "text-red-600" : "text-green-500",
-            )}
-          >
-            {dataRow["24h"]}
-          </p>
-        </>
-      );
-    },
-  },
-  {
-    header: "Price",
-    key: "price",
-    customRender: (dataRow): ReactNode => {
-      return (
-        <>
-          <p
-            className={cn(
-              dataRow["24h"] < 0 ? "text-red-600" : "text-green-500",
-            )}
-          >
-            ${dataRow.price}
-          </p>
-        </>
-      );
-    },
-  },
-];
-
-export default async function Home() {
   const resp = await fetch(
-    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_rank&x_cg_demo_api_key=${process.env.API_KEY}`,
+    `https://api.coingecko.com/api/v3/coins/markets?${searchQuery}vs_currency=usd&order=market_cap_rank&x_cg_demo_api_key=${process.env.API_KEY}`,
     GET_OPTIONS,
   );
 
   const result = await resp.json();
-  console.log(result);
   const transformedData = transformData(result);
 
   return (
     <>
-      <Table columns={cryptoColumns} data={transformedData} />
+      <HomeTable data={transformedData} />
     </>
   );
 }
