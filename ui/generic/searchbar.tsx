@@ -29,6 +29,14 @@ export default function Searchbar({
     setValue(e.target.value);
   };
 
+  const handleClose = () => {
+    if (value) {
+      setValue("");
+    } else {
+      searchToggle();
+    }
+  };
+
   return (
     <div className={cn("flex w-full cursor-pointer flex-row", cName)}>
       <i
@@ -50,6 +58,7 @@ export default function Searchbar({
           "size-full bg-gray-500 p-2 text-sm text-white focus:outline-none",
           !isSearchOpen && "hidden",
         )}
+        value={value}
         onKeyDown={handleEnter}
         onChange={handleChange}
       />
@@ -59,7 +68,7 @@ export default function Searchbar({
           className={cn(
             "flex items-center justify-center rounded-r-md bg-gray-500 pr-1",
           )}
-          onClick={searchToggle}
+          onClick={handleClose}
         >
           <CircleX />
         </i>

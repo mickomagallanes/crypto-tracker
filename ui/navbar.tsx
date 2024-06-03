@@ -6,11 +6,13 @@ import React, { ReactNode } from "react";
 import useToggle from "./hooks/useToggle";
 import Searchbar from "./generic/searchbar";
 import { usePathname, useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 interface NavItemProps {
   href: string;
   label: string;
   icon: ReactNode;
+  cName?: string;
 }
 
 export default function Navbar() {
@@ -24,21 +26,38 @@ export default function Navbar() {
 
   return (
     <nav
-      className="z-50 justify-between sm:fixed
-    sm:mt-3 sm:flex sm:w-full sm:flex-row sm:items-center sm:px-5"
+      className="z-50 justify-between bg-[#1B0404]
+    sm:fixed sm:flex sm:w-full sm:flex-row sm:items-center sm:px-5 sm:pb-1 sm:pt-3"
     >
       <ul
         id="nav-menu"
-        className="fixed bottom-0 grid w-full grid-cols-3 border-t border-gray-200/65 pt-2 text-center text-lg sm:relative
-        sm:top-0 sm:flex sm:w-auto sm:flex-row sm:space-x-4 sm:border-none "
+        className="fixed bottom-0 grid w-full grid-cols-3 border-t border-gray-200/65 bg-[#1B0404] pt-2 text-center text-base
+        sm:relative sm:top-0 sm:flex sm:w-auto sm:flex-row sm:space-x-4 sm:border-none sm:text-lg"
       >
-        <NavItem href="/" icon={<Bitcoin />} label="Crypto" />
+        <NavItem
+          href="/"
+          icon={<Bitcoin />}
+          label="Crypto"
+          cName={cn(pathname === "/" ? "text-pink-400" : "")}
+        />
         <NavItem
           href="/portfolio"
           icon={<BriefcaseBusiness />}
           label="Portfolio"
+          cName={cn(
+            pathname === "/portfolio" ? "text-purple-400" : "",
+            "hover:text-purple-400",
+          )}
         />
-        <NavItem href="/news" icon={<Newspaper />} label="News" />
+        <NavItem
+          href="/news"
+          icon={<Newspaper />}
+          label="News"
+          cName={cn(
+            pathname === "/news" ? "text-blue-400" : "",
+            "hover:text-blue-400",
+          )}
+        />
       </ul>
 
       <div
@@ -56,11 +75,15 @@ export default function Navbar() {
   );
 }
 
-function NavItem({ href, label, icon }: NavItemProps): ReactNode {
+function NavItem({ href, label, icon, cName = "" }: NavItemProps): ReactNode {
   return (
-    <li>
-      <i className="flex items-center justify-center sm:hidden">{icon}</i>
-      <Link href={href}>{label}</Link>
-    </li>
+    <Link href={href}>
+      <li>
+        <i className={cn("flex items-center justify-center sm:hidden", cName)}>
+          {icon}
+        </i>
+        <p className={cName}>{label}</p>
+      </li>
+    </Link>
   );
 }

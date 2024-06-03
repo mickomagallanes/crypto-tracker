@@ -3,16 +3,14 @@
 @tailwind utilities;
 
 body {
-  color: #c0c0c0;
-  background: #1B0404;
 
   li:hover {
     a, i {
-      color: #c549e4;
+      @apply text-pink-400;
     }
   }
   
   a:hover, i:hover {
-    color: #c549e4;
+    @apply text-pink-400;
   }
 }

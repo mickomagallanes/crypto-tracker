@@ -15,13 +15,13 @@ export interface DataRow {
 interface TableProps {
   isLoading?: boolean;
   columns: TableColumn[];
-  data: DataRow[];
+  data?: DataRow[];
   onRowClick?: () => void;
 }
 
 export default function Table({
   columns,
-  data,
+  data = [],
   isLoading = false,
   onRowClick = () => {},
 }: TableProps): ReactNode {
@@ -30,10 +30,7 @@ export default function Table({
       columns?.length > 0 &&
       columns.map((col) => {
         const mapKey = `${dataObj[col.key]}${col.key}`;
-
-        if (isLoading) {
-          return <LoadingCell key={mapKey} />;
-        } else if (col.customRender) {
+        if (col.customRender) {
           return <TDPadded key={mapKey}>{col.customRender(dataObj)}</TDPadded>;
         } else {
           return <TDPadded key={mapKey}>{dataObj[col.key]}</TDPadded>;
@@ -43,18 +40,18 @@ export default function Table({
   };
 
   return (
-    <table className="w-full ">
+    <table className="w-full">
       <thead className="text-left text-sm text-white">
         <tr>
           {columns?.length > 0 &&
             columns.map(({ key, header }) => (
-              <th className="p-4" key={key}>
+              <th className="p-3 sm:p-4" key={key}>
                 {header}
               </th>
             ))}
         </tr>
       </thead>
-      <tbody>
+      <tbody className="text-xs sm:text-sm">
         {data?.length > 0 &&
           data.map((dataObj) => (
             <tr
@@ -65,15 +62,29 @@ export default function Table({
               {renderTdData(dataObj)}
             </tr>
           ))}
+        {isLoading && generateLoadingCells(columns)}
       </tbody>
     </table>
   );
 }
 
+function generateLoadingCells(columns: TableColumn[]) {
+  const loadingTd = [];
+  for (let i = 0; i < 20; i++) {
+    loadingTd.push(
+      <tr>
+        {columns?.length > 0 &&
+          columns.map(({ key }) => <LoadingCell key={key} />)}
+      </tr>,
+    );
+  }
+  return loadingTd;
+}
+
 function LoadingCell() {
   return (
-    <TDPadded cName="py-2 text-center">
-      <div className="h-4 animate-pulse rounded-md bg-gray-200"></div>
+    <TDPadded cName="text-center">
+      <div className="animate-pulse rounded-md bg-gray-200 p-4"></div>
     </TDPadded>
   );
 }
@@ -85,5 +96,5 @@ function TDPadded({
   children: ReactNode;
   cName?: string;
 }) {
-  return <td className={cn("p-4", cName)}>{children}</td>;
+  return <td className={cn("p-3 sm:p-4", cName)}>{children}</td>;
 }
