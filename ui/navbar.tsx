@@ -26,8 +26,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className="z-50 justify-between bg-[#1B0404]
-    sm:fixed sm:flex sm:w-full sm:flex-row sm:items-center sm:px-5 sm:pb-1 sm:pt-3"
+      className="absolute z-50 justify-between bg-[#1B0404]
+    sm:fixed sm:flex sm:w-full sm:flex-row sm:items-center sm:px-5 sm:pb-2 sm:pt-3"
     >
       <ul
         id="nav-menu"

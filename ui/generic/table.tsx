@@ -84,7 +84,7 @@ function generateLoadingCells(columns: TableColumn[]) {
 function LoadingCell() {
   return (
     <TDPadded cName="text-center">
-      <div className="animate-pulse rounded-md bg-gray-200 p-4"></div>
+      <div className="animate-pulse rounded-md bg-neutral-700 p-4"></div>
     </TDPadded>
   );
 }

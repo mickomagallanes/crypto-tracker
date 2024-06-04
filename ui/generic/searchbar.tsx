@@ -38,12 +38,14 @@ export default function Searchbar({
   };
 
   return (
-    <div className={cn("flex w-full cursor-pointer flex-row", cName)}>
+    <div
+      className={cn("mt-1 flex w-full cursor-pointer flex-row sm:mt-0", cName)}
+    >
       <i
         className={cn(
           isSearchOpen
             ? "flex items-center justify-center rounded-l-md bg-gray-500 pl-1"
-            : "justify-end",
+            : "justify-end text-xl",
         )}
         onClick={(e) => {
           !isSearchOpen ? searchToggle() : onSearch(value);

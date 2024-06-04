@@ -132,9 +132,5 @@ const transformData = (data: ApiData[]): TransformedData[] => {
 };
 
 export default function HomeTable({ data }: { data: ApiData[] }) {
-  return (
-    <div className="container">
-      <Table columns={cryptoColumns} data={transformData(data)} />
-    </div>
-  );
+  return <Table columns={cryptoColumns} data={transformData(data)} />;
 }
