@@ -1,19 +1,16 @@
-import { fetchSearchResults } from "@/lib/utils";
+import { GET_OPTIONS } from "@/lib/utils";
 
-export default async function useSearch(searchParams: { search: string }) {
-  const searchQuery = searchParams.search ? `query=${searchParams.search}` : "";
-  let result: Promise<Response>;
-
-  if (searchParams.search) {
-    result = fetchSearchResults(searchQuery);
+export default async function useSearch(searchQuery: string) {
+  if (searchQuery === "") {
+    return null;
   } else {
-    result = Promise.resolve(
-      new Response(JSON.stringify(null), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      }),
+    const resp = await fetch(
+      `${process.env.API_URL}/search?${searchQuery}&x_cg_demo_api_key=${process.env.API_KEY}`,
+      {
+        cache: "no-store",
+        ...GET_OPTIONS,
+      },
     );
+    return await resp.json();
   }
-
-  return result;
 }

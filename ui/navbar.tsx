@@ -31,7 +31,7 @@ export default function Navbar() {
     >
       <ul
         id="nav-menu"
-        className="fixed bottom-0 grid w-full grid-cols-3 border-t border-gray-200/65 bg-[#1B0404] pt-2 text-center text-base
+        className="fixed bottom-0 flex w-full border-t border-gray-200/65 bg-[#1B0404] pt-2 text-center text-base
         sm:relative sm:top-0 sm:flex sm:w-auto sm:flex-row sm:space-x-4 sm:border-none sm:text-lg"
       >
         <NavItem
@@ -77,7 +77,7 @@ export default function Navbar() {
 
 function NavItem({ href, label, icon, cName = "" }: NavItemProps): ReactNode {
   return (
-    <Link href={href}>
+    <Link href={href} className="flex-1">
       <li>
         <i className={cn("flex items-center justify-center sm:hidden", cName)}>
           {icon}

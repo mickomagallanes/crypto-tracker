@@ -5,6 +5,7 @@ import React, { ReactNode } from "react";
 export interface TableColumn {
   header: string;
   key: string;
+  cName?: string;
   customRender?: (dataRow: DataRow) => ReactNode;
 }
 
@@ -31,9 +32,17 @@ export default function Table({
       columns.map((col) => {
         const mapKey = `${dataObj[col.key]}${col.key}`;
         if (col.customRender) {
-          return <TDPadded key={mapKey}>{col.customRender(dataObj)}</TDPadded>;
+          return (
+            <TDPadded cName={col.cName} key={mapKey}>
+              {col.customRender(dataObj)}
+            </TDPadded>
+          );
         } else {
-          return <TDPadded key={mapKey}>{dataObj[col.key]}</TDPadded>;
+          return (
+            <TDPadded cName={col.cName} key={mapKey}>
+              {dataObj[col.key]}
+            </TDPadded>
+          );
         }
       })
     );
@@ -44,8 +53,8 @@ export default function Table({
       <thead className="text-left text-sm text-white">
         <tr>
           {columns?.length > 0 &&
-            columns.map(({ key, header }) => (
-              <th className="p-3 sm:p-4" key={key}>
+            columns.map(({ key, header, cName }) => (
+              <th className={cn("p-3 sm:p-4", cName)} key={key}>
                 {header}
               </th>
             ))}
@@ -91,7 +100,7 @@ function LoadingCell() {
 
 function TDPadded({
   children,
-  cName,
+  cName = "",
 }: {
   children: ReactNode;
   cName?: string;

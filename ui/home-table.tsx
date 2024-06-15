@@ -56,9 +56,10 @@ const cryptoColumns: TableColumn[] = [
   {
     header: "Name",
     key: "name",
+    cName: "text-center",
     customRender: (dataRow: DataRow): ReactNode => {
       return (
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row justify-center gap-2">
           <div>
             <Image
               src={dataRow.image}
@@ -77,9 +78,10 @@ const cryptoColumns: TableColumn[] = [
   {
     header: "24h %",
     key: "24h",
+    cName: "text-right",
     customRender: (dataRow: DataRow): ReactNode => {
       return (
-        <div className="flex flex-row gap-1">
+        <div className="flex flex-row justify-end gap-1">
           <i className="flex items-center text-6xl sm:text-sm">
             {dataRow["24h"] < 0
               ? GLOBAL_ICONS.caretDownSm
@@ -100,16 +102,19 @@ const cryptoColumns: TableColumn[] = [
   {
     header: "Price",
     key: "price",
+    cName: "text-right",
     customRender: (dataRow: DataRow): ReactNode => {
       return (
         <>
-          <p
-            className={cn(
-              dataRow["24h"] < 0 ? "text-red-600" : "text-green-500",
-            )}
-          >
-            ${dataRow.price}
-          </p>
+          <div className="flex justify-end">
+            <p
+              className={cn(
+                dataRow["24h"] < 0 ? "text-red-600" : "text-green-500",
+              )}
+            >
+              ${dataRow.price}
+            </p>
+          </div>
         </>
       );
     },

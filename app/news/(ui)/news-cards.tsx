@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardLoading } from "./generic/card";
+import { Card, CardLoading } from "../../../ui/generic/card";
 
 interface Sentiment {
   sentiment: string;
