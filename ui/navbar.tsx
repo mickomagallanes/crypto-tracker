@@ -31,8 +31,8 @@ export default function Navbar() {
     >
       <ul
         id="nav-menu"
-        className="fixed bottom-0 flex w-full border-t border-gray-200/65 bg-[#1B0404] pt-2 text-center text-base
-        sm:relative sm:top-0 sm:flex sm:w-auto sm:flex-row sm:space-x-4 sm:border-none sm:text-lg"
+        className="fixed bottom-0 flex w-full border-t border-gray-200/65 bg-[#1B0404] pt-2 text-center text-xs sm:relative 
+        sm:top-0 sm:flex sm:w-auto sm:flex-row sm:space-x-4 sm:border-none sm:text-lg"
       >
         <NavItem
           href="/"
@@ -61,8 +61,8 @@ export default function Navbar() {
       </ul>
 
       <div
-        className="fixed top-0 mt-2 flex w-full cursor-pointer flex-row
-      px-2 align-middle sm:relative sm:right-0 sm:w-auto sm:justify-end sm:p-0"
+        className="fixed top-0 flex w-full cursor-pointer flex-row bg-[#1B0404]
+      px-2 pt-2 align-middle sm:relative sm:right-0 sm:w-auto sm:justify-end sm:p-0"
       >
         <Searchbar
           cName="justify-end"

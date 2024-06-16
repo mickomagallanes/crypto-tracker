@@ -56,10 +56,10 @@ const cryptoColumns: TableColumn[] = [
   {
     header: "Name",
     key: "name",
-    cName: "text-center",
+    cName: "sm:text-center",
     customRender: (dataRow: DataRow): ReactNode => {
       return (
-        <div className="flex flex-row justify-center gap-2">
+        <div className="flex flex-row gap-2 sm:justify-center">
           <div>
             <Image
               src={dataRow.image}
@@ -70,7 +70,7 @@ const cryptoColumns: TableColumn[] = [
           </div>
 
           <p>{dataRow.name}</p>
-          <p>{dataRow.symbol}</p>
+          <p className="hidden sm:block">{dataRow.symbol}</p>
         </div>
       );
     },
