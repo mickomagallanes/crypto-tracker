@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(roboto.className, "bg-[#1B0404] text-[#c0c0c0]")}>
+      <body className={cn(roboto.className, "bg-[#000000] text-[#C2C2C2]")}>
         <Navbar />
 
         <main className="items-center justify-between px-1 pb-16 pt-12 sm:pb-2 sm:pt-20">

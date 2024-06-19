@@ -17,7 +17,7 @@ interface TableProps {
   isLoading?: boolean;
   columns: TableColumn[];
   data?: DataRow[];
-  onRowClick?: () => void;
+  onRowClick?: (dataRow: DataRow) => void;
 }
 
 export default function Table({
@@ -64,7 +64,7 @@ export default function Table({
           data.map((dataObj) => (
             <tr
               className="hover:cursor-pointer hover:bg-neutral-900"
-              onClick={onRowClick}
+              onClick={() => onRowClick(dataObj)}
               key={dataObj.id}
             >
               {renderTdData(dataObj)}

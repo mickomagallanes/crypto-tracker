@@ -26,12 +26,12 @@ export default function Navbar() {
 
   return (
     <nav
-      className="absolute z-50 justify-between bg-[#1B0404]
+      className="absolute z-50 justify-between bg-[#000000]
     sm:fixed sm:flex sm:w-full sm:flex-row sm:items-center sm:px-5 sm:pb-2 sm:pt-3"
     >
       <ul
         id="nav-menu"
-        className="fixed bottom-0 flex w-full border-t border-gray-200/65 bg-[#1B0404] pt-2 text-center text-xs sm:relative 
+        className="fixed bottom-0 flex w-full border-t border-gray-200/65 bg-[#000000] pt-2 text-center text-xs sm:relative 
         sm:top-0 sm:flex sm:w-auto sm:flex-row sm:space-x-4 sm:border-none sm:text-lg"
       >
         <NavItem
@@ -61,7 +61,7 @@ export default function Navbar() {
       </ul>
 
       <div
-        className="fixed top-0 flex w-full cursor-pointer flex-row bg-[#1B0404]
+        className="fixed top-0 flex w-full cursor-pointer flex-row bg-[#000000]
       px-2 pt-2 align-middle sm:relative sm:right-0 sm:w-auto sm:justify-end sm:p-0"
       >
         <Searchbar

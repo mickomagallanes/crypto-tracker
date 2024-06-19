@@ -5,6 +5,7 @@ import Table, { DataRow, TableColumn } from "./generic/table";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import GLOBAL_ICONS from "@/lib/icons";
+import { useRouter } from "next/navigation";
 
 interface Roi {
   times: numOrNull;
@@ -43,6 +44,7 @@ interface ApiData {
 
 interface TransformedData {
   id: number;
+  coinId: strOrNull;
   name: strOrNull;
   symbol: strOrNull;
   image: string;
@@ -126,6 +128,7 @@ const transformData = (data: ApiData[]): TransformedData[] => {
   return data
     .map((item) => ({
       id: item.market_cap_rank,
+      coinId: item.id,
       name: item.name,
       symbol: item.symbol ? item.symbol.toUpperCase() : null,
       image: item.image ?? "",
@@ -137,5 +140,13 @@ const transformData = (data: ApiData[]): TransformedData[] => {
 };
 
 export default function HomeTable({ data }: { data: ApiData[] }) {
-  return <Table columns={cryptoColumns} data={transformData(data)} />;
+  const router = useRouter();
+
+  return (
+    <Table
+      onRowClick={(dataRow) => router.push("/" + dataRow.coinId)}
+      columns={cryptoColumns}
+      data={transformData(data)}
+    />
+  );
 }
