@@ -4,8 +4,6 @@ import HomeTable from "@/ui/home-table";
 import useSearch from "@/ui/hooks/useSearch";
 
 export default async function Main({ searchQuery }: { searchQuery: string }) {
-  const apiKey = process.env.API_KEY;
-  const baseURL = process.env.API_URL;
   const searchData = await useSearch(searchQuery);
   let marketQuery = "";
 
@@ -15,12 +13,15 @@ export default async function Main({ searchQuery }: { searchQuery: string }) {
       .map((coin: SearchCoinObject) => coin.api_symbol)
       .join(",");
 
-    marketQuery = `ids=${allCoins}`;
+    marketQuery = `&ids=${allCoins}`;
   }
 
-  async function fetchMarketData(query: string) {
+  async function fetchMarketData() {
     return fetch(
-      `${baseURL}/coins/markets?${query}&vs_currency=usd&per_page=250&order=market_cap_rank&x_cg_demo_api_key=${apiKey}`,
+      `${process.env.API_URL}/coins/markets?vs_currency=usd${marketQuery}&
+        price_change_percentage=24h
+        &per_page=250&
+        order=market_cap_rank&x_cg_demo_api_key=${process.env.API_KEY}`,
       {
         ...GET_OPTIONS,
         cache: "no-store",
@@ -28,7 +29,7 @@ export default async function Main({ searchQuery }: { searchQuery: string }) {
     );
   }
 
-  const resp = await fetchMarketData(marketQuery);
+  const resp = await fetchMarketData();
   const data = await resp.json();
 
   return <HomeTable data={data} />;

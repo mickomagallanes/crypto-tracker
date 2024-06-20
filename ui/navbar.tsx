@@ -5,7 +5,7 @@ import Link from "next/link";
 import React, { ReactNode } from "react";
 import useToggle from "./hooks/useToggle";
 import Searchbar from "./generic/searchbar";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 interface NavItemProps {
@@ -19,6 +19,7 @@ export default function Navbar() {
   const [isSearchOpen, searchToggle] = useToggle();
   const router = useRouter();
   const pathname = usePathname();
+  const params = useParams<{ symbol: string }>();
 
   function handleSearch(val: string) {
     router.push(`${pathname}?search=${val}`);
@@ -38,7 +39,11 @@ export default function Navbar() {
           href="/"
           icon={<Bitcoin />}
           label="Crypto"
-          cName={cn(pathname === "/" ? "text-pink-400" : "")}
+          cName={cn(
+            pathname === "/" || params.symbol !== undefined
+              ? "text-pink-400"
+              : "",
+          )}
         />
         <NavItem
           href="/portfolio"

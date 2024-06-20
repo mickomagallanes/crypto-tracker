@@ -41,6 +41,17 @@ export const formatMoney = (value: number) => {
 
   return formattedValue;
 };
+
 export const funcDefaultReturn = (param: any) => {
   return param;
+};
+
+export const daysMarketQuery = (days: string) => {
+  if (days === "1") {
+    return "24h";
+  } else if (days === "365") {
+    return "1y";
+  } else {
+    return days;
+  }
 };

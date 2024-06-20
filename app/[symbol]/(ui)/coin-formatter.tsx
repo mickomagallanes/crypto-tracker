@@ -1,6 +1,6 @@
 "use client";
 import LineChart from "@/ui/generic/line-chart";
-import Tabs from "@/ui/generic/tabs";
+
 import { ChartData } from "chart.js";
 import React from "react";
 
@@ -12,13 +12,12 @@ interface ChartProps {
 export default function CoinFormatter({ datasets, labels }: ChartProps) {
   // TODO: tick formatter should depend on the days
   return (
-    <>
-      <Tabs />
+    <div className="h-[350px] md:order-3 md:size-full md:h-[550px]">
       <LineChart
         datasets={datasets}
         labels={labels}
         xTickFormatter={(val) => val.slice(0, 10)}
       />
-    </>
+    </div>
   );
 }

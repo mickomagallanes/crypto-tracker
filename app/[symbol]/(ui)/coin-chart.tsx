@@ -2,6 +2,7 @@ import React from "react";
 import { GET_OPTIONS } from "@/lib/utils";
 import { formatComplete } from "@/lib/date-utils";
 import CoinFormatter from "./coin-formatter";
+import DaysTabs from "./days-tabs";
 
 export default async function CoinChart({
   symbol,
@@ -22,6 +23,10 @@ export default async function CoinChart({
 
   const resp = await fetchHistData();
   const data = await resp.json();
+
+  // TODO:
+  // const resp = await fetchCoinData(symbol);
+  // const data = await resp.json();
 
   const { timestamp, prices } = data.prices.reduce(
     (acc: { timestamp: string[]; prices: number[] }, current: number[]) => {
@@ -51,8 +56,12 @@ export default async function CoinChart({
   ];
 
   return (
-    <div className="h-[350px] md:h-[500px]">
+    <>
+      <div className="mb-8 flex justify-end">
+        <DaysTabs />
+      </div>
+
       <CoinFormatter datasets={datasets} labels={timestamp} />
-    </div>
+    </>
   );
 }
