@@ -160,13 +160,16 @@ export default function LineChart({
           autoSkip: false,
           // the labels below, like the time or month
           color: "#A2A2A2",
-          maxRotation: 0,
-          minRotation: 0,
+          maxRotation: 45,
+          minRotation: 45,
           callback: function (value: any, index: number) {
+            const width = window.innerWidth;
             const totalLabels = labels.length;
-            const visibleLabelsCount = 12; // Adjust this value as needed
+            const visibleLabelsCount = width < 500 ? 3 : 10; // Adjust this value as needed
             const stepSize = Math.ceil(totalLabels / visibleLabelsCount);
-            return index % stepSize === 0 ? xTickFormatter(labels[index]) : "";
+            return index % stepSize === 0 || index === totalLabels - 1
+              ? xTickFormatter(labels[index])
+              : "";
           },
         },
       },

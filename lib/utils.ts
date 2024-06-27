@@ -52,6 +52,6 @@ export const daysMarketQuery = (days: string) => {
   } else if (days === "365") {
     return "1y";
   } else {
-    return days;
+    return `${days}d`;
   }
 };

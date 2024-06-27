@@ -42,7 +42,7 @@ export default function DaysTabs() {
         1M
       </Link>
       <Link
-        className={cn("m-auto rounded-md py-1", isActive("90"))}
+        className={cn("m-auto rounded-md py-1", isActive("60"))}
         href={`${pathname}?days=60`}
       >
         2M

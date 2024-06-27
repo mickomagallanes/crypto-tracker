@@ -14,7 +14,6 @@ export interface DataRow {
 }
 
 interface TableProps {
-  isLoading?: boolean;
   columns: TableColumn[];
   data?: DataRow[];
   onRowClick?: (dataRow: DataRow) => void;

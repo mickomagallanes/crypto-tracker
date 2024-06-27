@@ -2,7 +2,6 @@ import React from "react";
 import { GET_OPTIONS } from "@/lib/utils";
 import { formatComplete } from "@/lib/date-utils";
 import CoinFormatter from "./coin-formatter";
-import DaysTabs from "./days-tabs";
 
 export default async function CoinChart({
   symbol,
@@ -24,7 +23,7 @@ export default async function CoinChart({
   const resp = await fetchHistData();
   const data = await resp.json();
 
-  // TODO:
+  // TODO: centralized skeleton
   // const resp = await fetchCoinData(symbol);
   // const data = await resp.json();
 
@@ -57,10 +56,6 @@ export default async function CoinChart({
 
   return (
     <>
-      <div className="mb-8 flex justify-end">
-        <DaysTabs />
-      </div>
-
       <CoinFormatter datasets={datasets} labels={timestamp} />
     </>
   );

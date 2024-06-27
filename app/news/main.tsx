@@ -22,7 +22,7 @@ export default async function Main({ searchQuery }: { searchQuery: string }) {
       `${process.env.API_URL_NEWS}?apikey=${process.env.API_KEY_NEWS}&${query}`,
       {
         ...GET_OPTIONS,
-        cache: "no-store",
+        next: { revalidate: 3600 * 3 }, // revalidate every 3 hours
       },
     );
   };
