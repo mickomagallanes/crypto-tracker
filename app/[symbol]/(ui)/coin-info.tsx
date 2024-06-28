@@ -1,8 +1,6 @@
-import React from 'react'
+import React from "react";
 
 // TODO: finish details
-export default function coin-info() {
-  return (
-    <div>coin-info</div>
-  )
+export default function CoinInfo() {
+  return <div>coin-info</div>;
 }
