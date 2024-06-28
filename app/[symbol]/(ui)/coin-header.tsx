@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 
 export default async function CoinHeader({
-  days,
+  days = "1",
   symbol,
 }: {
   days: string;
