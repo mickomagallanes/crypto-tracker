@@ -1,5 +1,7 @@
 "use client";
 
+import BackError from "@/ui/back-error";
+
 export default function Error() {
   return (
     <div className="container mx-auto flex h-full items-center justify-center pt-10">
@@ -8,8 +10,9 @@ export default function Error() {
           An error occurred!
         </p>
         <p className="mb-4 text-lg font-light text-gray-400">
-          Please try refreshing, or come back later
+          The coin could not be existing or other error has occurred
         </p>
+        <BackError />
       </div>
     </div>
   );

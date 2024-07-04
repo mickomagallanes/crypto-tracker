@@ -10,7 +10,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Simple Crypto Tracker",
+  title: "Jupither Crypto",
+  description: "Cryptocurrency price tracker",
 };
 
 export const viewport: Viewport = {
@@ -35,7 +36,7 @@ export default function RootLayout({
       >
         <Navbar />
 
-        <main className="items-center justify-between px-1 pb-16 pt-12 sm:pb-2 sm:pt-20">
+        <main className="items-center justify-between px-1 pb-16 pt-20 sm:pb-2 sm:pt-20">
           {children}
         </main>
       </body>

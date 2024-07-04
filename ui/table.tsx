@@ -1,17 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { DataRow, TableColumn } from "@/types/table";
 import React, { ReactNode } from "react";
-
-export interface TableColumn {
-  header: string;
-  key: string;
-  cName?: string;
-  customRender?: (dataRow: DataRow) => ReactNode;
-}
-
-export interface DataRow {
-  [key: string]: any;
-}
 
 interface TableProps {
   columns: TableColumn[];

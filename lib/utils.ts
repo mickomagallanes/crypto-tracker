@@ -2,12 +2,20 @@ import clsx, { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export const cn = (...classes: ClassValue[]) => twMerge(clsx(...classes));
-export const GET_OPTIONS = {
-  method: "GET",
-  headers: { accept: "application/json" },
+
+export const formatNumber = (value: number | null): string => {
+  if (value === null) {
+    return `-`;
+  }
+
+  return value.toLocaleString(undefined, { maximumFractionDigits: 0 });
 };
 
-export const formatMoney = (value: number) => {
+export const formatMoney = (value: number | null): string => {
+  if (value === null) {
+    return `$0`;
+  }
+
   const magnitude =
     Math.abs(value) >= 1 ? Math.floor(Math.log10(Math.abs(value))) : 0;
 

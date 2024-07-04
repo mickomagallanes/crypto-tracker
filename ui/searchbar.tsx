@@ -43,8 +43,9 @@ export default function Searchbar({
     >
       <i
         className={cn(
+          "flex items-center",
           isSearchOpen
-            ? "flex items-center justify-center rounded-l-md bg-gray-500 pl-1"
+            ? "justify-center rounded-l-md bg-gray-500 pl-1"
             : "justify-end text-xl",
         )}
         onClick={(e) => {

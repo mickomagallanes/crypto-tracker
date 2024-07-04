@@ -1,7 +1,7 @@
 import React from "react";
-import { GET_OPTIONS } from "@/lib/utils";
 import { formatComplete } from "@/lib/date-utils";
 import CoinFormatter from "./coin-formatter";
+import { fetchHistData } from "@/lib/fetching";
 
 export default async function CoinChart({
   symbol,
@@ -10,22 +10,7 @@ export default async function CoinChart({
   symbol: string;
   days?: string;
 }) {
-  const fetchHistData = async () => {
-    return fetch(
-      `${process.env.API_URL}/coins/${symbol}/market_chart?days=${days}&vs_currency=usd&x_cg_demo_api_key=${process.env.API_KEY}`,
-      {
-        ...GET_OPTIONS,
-        cache: "no-store",
-      },
-    );
-  };
-
-  const resp = await fetchHistData();
-  const data = await resp.json();
-
-  // TODO: centralized skeleton
-  // const resp = await fetchCoinData(symbol);
-  // const data = await resp.json();
+  const data: APIHistData = await fetchHistData(symbol, days);
 
   const { timestamp, prices } = data.prices.reduce(
     (acc: { timestamp: string[]; prices: number[] }, current: number[]) => {

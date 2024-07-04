@@ -1,8 +1,6 @@
-import Table from "@/ui/generic/table";
-
 import { Suspense } from "react";
 import Main from "./main";
-import TableLoading from "@/ui/generic/table-loading";
+import TableSkeleton from "@/ui/skeleton/table-skeleton";
 
 const cryptoColumnsLoading = [
   { header: "#", key: "id" },
@@ -31,7 +29,7 @@ export default async function Home({
     <div className="mx-auto lg:px-24">
       <Suspense
         key={searchQuery}
-        fallback={<TableLoading columns={cryptoColumnsLoading} />}
+        fallback={<TableSkeleton columns={cryptoColumnsLoading} />}
       >
         <Main searchQuery={searchQuery} />
       </Suspense>

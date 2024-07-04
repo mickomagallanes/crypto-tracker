@@ -21,7 +21,7 @@ export function Card({
       >
         <div className="min-w-min">
           {imgSrc !== null ? (
-            <img src={imgSrc} alt="" />
+            <img src={imgSrc} alt="" loading="lazy" />
           ) : (
             <div className="mb-4 flex h-40 items-center justify-center rounded bg-neutral-700">
               <svg

@@ -1,18 +1,8 @@
 import { cn } from "@/lib/utils";
-import React, { ReactNode } from "react";
+import { TableColumn } from "@/types/table";
+import React from "react";
 
-interface DataRow {
-  [key: string]: any;
-}
-
-interface TableColumn {
-  header: string;
-  key: string;
-  cName?: string;
-  customRender?: (dataRow: DataRow) => ReactNode;
-}
-
-export default function TableLoading({ columns }: { columns: TableColumn[] }) {
+export default function TableSkeleton({ columns }: { columns: TableColumn[] }) {
   return (
     <table className="w-full">
       <thead className="text-left text-sm text-white">
@@ -34,7 +24,7 @@ export default function TableLoading({ columns }: { columns: TableColumn[] }) {
 
 function generateLoadingCells(columns: TableColumn[]) {
   const loadingTd = [];
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 10; i++) {
     loadingTd.push(
       <tr>
         {columns?.length > 0 &&
@@ -48,7 +38,7 @@ function generateLoadingCells(columns: TableColumn[]) {
 function LoadingCell() {
   return (
     <td className={cn("p-2 sm:p-4", "text-center")}>
-      <div className="animate-pulse rounded-md bg-neutral-700 p-4"></div>
+      <div className="animate-pulse rounded-md bg-neutral-700 p-3"></div>
     </td>
   );
 }

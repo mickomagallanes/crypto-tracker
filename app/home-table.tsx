@@ -1,46 +1,12 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import Table, { DataRow, TableColumn } from "./generic/table";
+import Table from "../ui/table";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import GLOBAL_ICONS from "@/lib/icons";
 import { useRouter } from "next/navigation";
-
-interface Roi {
-  times: numOrNull;
-  currency: strOrNull;
-  percentage: numOrNull;
-}
-
-interface ApiData {
-  id: strOrNull;
-  symbol: strOrNull;
-  name: strOrNull;
-  image: strOrNull;
-  current_price: numOrNull;
-  market_cap: numOrNull;
-  market_cap_rank: number;
-  fully_diluted_valuation: numOrNull;
-  total_volume: numOrNull;
-  high_24h: numOrNull;
-  low_24h: numOrNull;
-  price_change_24h: numOrNull;
-  price_change_percentage_24h: numOrNull;
-  market_cap_change_24h: numOrNull;
-  market_cap_change_percentage_24h: numOrNull;
-  circulating_supply: numOrNull;
-  total_supply: numOrNull;
-  max_supply: numOrNull;
-  ath: numOrNull;
-  ath_change_percentage: numOrNull;
-  ath_date: strOrNull;
-  atl: numOrNull;
-  atl_change_percentage: numOrNull;
-  atl_date: strOrNull;
-  roi: Roi | null;
-  last_updated: strOrNull;
-}
+import { DataRow, TableColumn } from "@/types/table";
 
 interface TransformedData {
   id: number;
@@ -124,7 +90,7 @@ const cryptoColumns: TableColumn[] = [
 ];
 
 // Function to transform the data
-const transformData = (data: ApiData[]): TransformedData[] => {
+const transformData = (data: APIMarketData): TransformedData[] => {
   return data
     .map((item) => ({
       id: item.market_cap_rank,
@@ -139,7 +105,7 @@ const transformData = (data: ApiData[]): TransformedData[] => {
     .sort((a, b) => a.id - b.id);
 };
 
-export default function HomeTable({ data }: { data: ApiData[] }) {
+export default function HomeTable({ data }: { data: APIMarketData }) {
   const router = useRouter();
 
   return (

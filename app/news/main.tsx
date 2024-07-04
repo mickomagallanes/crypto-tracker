@@ -1,14 +1,14 @@
 import React from "react";
-import { GET_OPTIONS } from "@/lib/utils";
 
 import useSearch from "@/ui/hooks/useSearch";
 import NewsCards from "@/app/news/(ui)/news-cards";
+import { fetchNewsData } from "@/lib/fetching";
 
 export default async function Main({ searchQuery }: { searchQuery: string }) {
-  const searchData = await useSearch(searchQuery);
+  const searchData: Nullable<SearchResult> = await useSearch(searchQuery);
   let newsQuery = "qInMeta=crypto OR bitcoin";
 
-  if (searchData?.coins?.length > 0) {
+  if (searchData !== null && searchData?.coins?.length > 0) {
     const allCoins = searchData.coins
       .filter((coin: SearchCoinObject) => coin.market_cap_rank !== null)
       .map((coin: SearchCoinObject) => coin.api_symbol)
@@ -17,18 +17,7 @@ export default async function Main({ searchQuery }: { searchQuery: string }) {
     newsQuery = `q=${allCoins}`;
   }
 
-  const fetchNewsData = async (query: string) => {
-    return fetch(
-      `${process.env.API_URL_NEWS}?apikey=${process.env.API_KEY_NEWS}&${query}`,
-      {
-        ...GET_OPTIONS,
-        next: { revalidate: 3600 * 3 }, // revalidate every 3 hours
-      },
-    );
-  };
-
-  const resp = await fetchNewsData(newsQuery);
-  const data = await resp.json();
+  const data = await fetchNewsData(newsQuery);
 
   return <NewsCards newsData={data} />;
 }

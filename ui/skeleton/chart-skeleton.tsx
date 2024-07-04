@@ -1,4 +1,4 @@
-export default function ChartLoading() {
+export default function ChartSkeleton() {
   return (
     <div className="relative mx-auto flex h-full items-center justify-center">
       <svg

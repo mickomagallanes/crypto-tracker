@@ -1,16 +1,13 @@
-import { GET_OPTIONS } from "@/lib/utils";
+import { fetchSearch } from "@/lib/fetching";
 
-export default async function useSearch(searchQuery: string) {
+export default async function useSearch(
+  searchQuery: string,
+): Promise<Nullable<SearchResult>> {
   if (searchQuery === "") {
-    return null;
+    return new Promise(function (resolve) {
+      resolve(null);
+    });
   } else {
-    const resp = await fetch(
-      `${process.env.API_URL}/search?${searchQuery}&x_cg_demo_api_key=${process.env.API_KEY}`,
-      {
-        cache: "no-store",
-        ...GET_OPTIONS,
-      },
-    );
-    return await resp.json();
+    return await fetchSearch(searchQuery);
   }
 }
