@@ -1,11 +1,18 @@
 import { fetchCoinData } from "@/lib/fetching";
-import { formatMoney, formatNumber } from "@/lib/utils";
+import { daysMarketQuery, formatMoney, formatNumber } from "@/lib/utils";
 import PriceChange from "@/ui/price-change";
 
 import React, { ReactNode } from "react";
 
-export default async function CoinInfo({ symbol }: { symbol: string }) {
+export default async function CoinInfo({
+  days = "1",
+  symbol,
+}: {
+  days: string;
+  symbol: string;
+}) {
   const data: APICoinData = await fetchCoinData(symbol);
+  const dayKey = daysMarketQuery(days);
 
   return (
     <div className="flex flex-col">
@@ -15,7 +22,11 @@ export default async function CoinInfo({ symbol }: { symbol: string }) {
           <>
             <PriceChange
               cName="text-sm"
-              price={data.market_data.market_cap_change_percentage_24h}
+              price={
+                data.market_data[
+                  `price_change_percentage_${dayKey}` as `price_change_percentage_${CoinDayKey}`
+                ]
+              }
             />
             <p>{formatMoney(data.market_data.market_cap.usd)}</p>
           </>

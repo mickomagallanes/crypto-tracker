@@ -25,7 +25,7 @@ export default function Symbol({
       </div>
       <div className="order-3 mt-4 justify-center lg:order-2 lg:col-span-2 lg:row-span-3 lg:mt-0">
         <Suspense key={daysQuery + "header"} fallback={<InfoSkeleton />}>
-          <CoinInfo symbol={params.symbol} />
+          <CoinInfo symbol={params.symbol} days={searchParams.days} />
         </Suspense>
       </div>
 
