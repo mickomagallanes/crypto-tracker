@@ -34,9 +34,9 @@ export default function Navbar() {
       <div className="mt-2 flex items-center justify-center lg:mt-0 lg:justify-start">
         <Link href={`/`}>
           <Image
-            src={"/images/logo-word.png"}
+            src={"/images/logo-nav.png"}
             alt="Jupither"
-            width={120}
+            width={150}
             height={300}
           />
         </Link>

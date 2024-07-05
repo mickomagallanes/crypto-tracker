@@ -23,7 +23,7 @@ export default async function News({
   return (
     <div className="mx-auto xl:container">
       <Suspense key={searchQuery} fallback={<NewsCards isLoading={true} />}>
-        <Main searchQuery={searchQuery} />
+        <Main searchQuery={searchQuery} searchWord={searchParams.search} />
       </Suspense>
     </div>
   );

@@ -13,7 +13,7 @@ export default function NewsCards({
   newsData = null,
   isLoading = false,
 }: {
-  newsData?: APINewsObject | null;
+  newsData?: NewsArticle[] | null;
   isLoading?: boolean;
 }) {
   return (
@@ -22,8 +22,8 @@ export default function NewsCards({
      sm:grid-cols-2 sm:px-8 md:grid-cols-3 xl:grid-cols-4"
     >
       {newsData !== null &&
-        newsData?.results?.length > 0 &&
-        newsData.results.map((news) => (
+        newsData?.length > 0 &&
+        newsData.map((news) => (
           <Card
             key={news.article_id}
             imgSrc={news.image_url}

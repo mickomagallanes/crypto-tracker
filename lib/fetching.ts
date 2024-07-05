@@ -33,7 +33,7 @@ const shouldRetry = (status: number) => {
 };
 
 export async function fetchNewsData(query: string): Promise<APINewsObject> {
-  const url = `${process.env.API_URL_NEWS}?apikey=${process.env.API_KEY_NEWS}&${query}`;
+  const url = `${process.env.API_URL_NEWS}?apikey=${process.env.API_KEY_NEWS}&language=en&${query}`;
   const option = { next: { revalidate: 3600 * 3 } }; // revalidate data every 3 hours
 
   return await fetchWithError<APINewsObject>(url, option);
