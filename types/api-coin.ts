@@ -5,35 +5,45 @@ interface MarketRoi {
 }
 
 interface MarketObject {
-  id: strOrNull;
+  id: string;
   symbol: strOrNull;
   name: strOrNull;
   image: strOrNull;
-  current_price: numOrNull;
-  market_cap: numOrNull;
+  current_price: number;
+  market_cap: number;
   market_cap_rank: number;
-  fully_diluted_valuation: numOrNull;
-  total_volume: numOrNull;
-  high_24h: numOrNull;
-  low_24h: numOrNull;
-  price_change_24h: numOrNull;
-  price_change_percentage_24h: numOrNull;
-  market_cap_change_24h: numOrNull;
-  market_cap_change_percentage_24h: numOrNull;
-  circulating_supply: numOrNull;
-  total_supply: numOrNull;
-  max_supply: numOrNull;
-  ath: numOrNull;
-  ath_change_percentage: numOrNull;
+  fully_diluted_valuation: number;
+  total_volume: number;
+  high_24h: number;
+  low_24h: number;
+  price_change_24h: number;
+  price_change_percentage_24h: number;
+  market_cap_change_24h: number;
+  market_cap_change_percentage_24h: number;
+  circulating_supply: number;
+  total_supply: number;
+  max_supply: number;
+  ath: number;
+  ath_change_percentage: number;
   ath_date: strOrNull;
-  atl: numOrNull;
-  atl_change_percentage: numOrNull;
+  atl: number;
+  atl_change_percentage: number;
   atl_date: strOrNull;
   roi: MarketRoi | null;
   last_updated: strOrNull;
 }
 
 type APIMarketData = MarketObject[];
+interface TransformedMarket {
+  id: number;
+  coinId: strOrNull;
+  name: strOrNull;
+  symbol: strOrNull;
+  image: string;
+  price: numOrNull;
+  marketCap: numOrNull;
+  "24h": numOrNull;
+}
 
 type CoinDayKey = "24h" | "7d" | "30d" | "60d" | "1y";
 

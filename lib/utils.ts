@@ -24,8 +24,6 @@ export const formatMoney = (value: number | null): string => {
   // Adjust decimals based on magnitude
   if (magnitude >= 6) {
     decimals = 0; // No decimals for very large values (e.g., millions or more)
-  } else if (magnitude >= 4) {
-    decimals = 2; // Two decimals for values in the thousands
   } else if (magnitude >= 2) {
     decimals = 2; // Four decimals for values in the hundreds
   } else {
@@ -42,7 +40,7 @@ export const formatMoney = (value: number | null): string => {
     formattedValue = new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
-      minimumFractionDigits: decimals,
+      minimumFractionDigits: 0,
       maximumFractionDigits: decimals,
     }).format(value);
   }
@@ -62,4 +60,27 @@ export const daysMarketQuery = (days: string) => {
   } else {
     return `${days}d`;
   }
+};
+
+export const calculateValueChange = (
+  currentPrice: number,
+  percentChange: number,
+  coinHoldings: number,
+): number => {
+  // Convert percent change to a decimal
+  const percentChangeDecimal = percentChange / 100;
+
+  // Calculate the old price using the formula: Old Price = Current Price / (1 + Percent Change)
+  const oldPrice = currentPrice / (1 + percentChangeDecimal);
+
+  // Calculate the total value of coin holdings 24 hours ago
+  const oldValue = coinHoldings * oldPrice;
+
+  // Calculate the current total value of coin holdings
+  const currentValue = coinHoldings * currentPrice;
+
+  // Calculate the change in value
+  const changeInValue = currentValue - oldValue;
+
+  return changeInValue;
 };

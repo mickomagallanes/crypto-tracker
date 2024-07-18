@@ -9,13 +9,6 @@ import { useParams, usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-interface NavItemProps {
-  href: string;
-  label: string;
-  icon: ReactNode;
-  cName?: string;
-}
-
 export default function Navbar() {
   const [isSearchOpen, searchToggle] = useToggle();
   const router = useRouter();
@@ -95,7 +88,17 @@ export default function Navbar() {
   );
 }
 
-function NavItem({ href, label, icon, cName = "" }: NavItemProps): ReactNode {
+function NavItem({
+  href,
+  label,
+  icon,
+  cName = "",
+}: {
+  href: string;
+  label: string;
+  icon: ReactNode;
+  cName?: string;
+}): ReactNode {
   return (
     <Link href={href} className="flex-1">
       <li>

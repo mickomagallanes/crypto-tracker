@@ -1,6 +1,7 @@
 import { fetchCoinData } from "@/lib/fetching";
 import { daysMarketQuery, formatMoney } from "@/lib/utils";
-import PriceChange from "@/ui/price-change";
+import PercentChange from "@/ui/percent-change";
+
 import Image from "next/image";
 import React from "react";
 
@@ -38,7 +39,7 @@ export default async function CoinHeader({
               {data.symbol.toUpperCase()}
             </p>
             <span className="ml-2 rounded-md bg-gray-300/20 px-1.5 py-0.5 text-xs text-gray-200">
-              #1
+              #{data.market_cap_rank}
             </span>
           </div>
         </div>
@@ -47,7 +48,7 @@ export default async function CoinHeader({
           <p className="mr-2 text-3xl font-bold leading-10 text-gray-50  md:text-4xl">
             {formatMoney(currentPrice)}
           </p>
-          <PriceChange price={priceChange} />
+          <PercentChange percent={priceChange} />
         </div>
       </div>
     </>

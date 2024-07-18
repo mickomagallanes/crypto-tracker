@@ -8,17 +8,6 @@ import GLOBAL_ICONS from "@/lib/icons";
 import { useRouter } from "next/navigation";
 import { DataRow, TableColumn } from "@/types/table";
 
-interface TransformedData {
-  id: number;
-  coinId: strOrNull;
-  name: strOrNull;
-  symbol: strOrNull;
-  image: string;
-  price: numOrNull;
-  marketCap: numOrNull;
-  "24h": numOrNull;
-}
-
 const cryptoColumns: TableColumn[] = [
   { header: "#", key: "id" },
   {
@@ -90,7 +79,7 @@ const cryptoColumns: TableColumn[] = [
 ];
 
 // Function to transform the data
-const transformData = (data: APIMarketData): TransformedData[] => {
+const transformData = (data: APIMarketData): TransformedMarket[] => {
   return data
     .map((item) => ({
       id: item.market_cap_rank,

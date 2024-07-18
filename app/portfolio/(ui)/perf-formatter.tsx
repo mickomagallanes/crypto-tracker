@@ -1,10 +1,10 @@
 "use client";
-import { LineChart } from "@/ui/line-chart";
+import { LineChart, LineChart2 } from "@/ui/line-chart";
 
 import { ChartData } from "chart.js";
 import React from "react";
 
-export default function CoinFormatter({
+export default function PerfFormatter({
   datasets,
   labels,
 }: {
@@ -12,8 +12,8 @@ export default function CoinFormatter({
   labels: string[];
 }) {
   return (
-    <div className="h-[350px] md:order-3 md:size-full md:h-[550px]">
-      <LineChart
+    <div className="h-[350px] ">
+      <LineChart2
         datasets={datasets}
         labels={labels}
         xTickFormatter={(val) => val.slice(0, 10)}

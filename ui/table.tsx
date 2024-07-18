@@ -3,17 +3,15 @@ import { cn } from "@/lib/utils";
 import { DataRow, TableColumn } from "@/types/table";
 import React, { ReactNode } from "react";
 
-interface TableProps {
-  columns: TableColumn[];
-  data?: DataRow[];
-  onRowClick?: (dataRow: DataRow) => void;
-}
-
 export default function Table({
   columns,
   data = [],
   onRowClick = () => {},
-}: TableProps): ReactNode {
+}: {
+  columns: TableColumn[];
+  data?: DataRow[];
+  onRowClick?: (dataRow: DataRow) => void;
+}): ReactNode {
   const renderTdData = (dataObj: DataRow) => {
     return (
       columns?.length > 0 &&

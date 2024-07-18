@@ -4,19 +4,17 @@ import { cn } from "@/lib/utils";
 import { CircleX, Search } from "lucide-react";
 import React, { useState } from "react";
 
-interface SearchbarProps {
-  isSearchOpen: boolean;
-  searchToggle: () => void;
-  cName?: string;
-  onSearch?: (val: string) => void;
-}
-
 export default function Searchbar({
   isSearchOpen,
   searchToggle,
   cName = "",
   onSearch = () => {},
-}: SearchbarProps) {
+}: {
+  isSearchOpen: boolean;
+  searchToggle: () => void;
+  cName?: string;
+  onSearch?: (val: string) => void;
+}) {
   const [value, setValue] = useState<string>("");
 
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {

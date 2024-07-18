@@ -1,6 +1,6 @@
 import { fetchCoinData } from "@/lib/fetching";
 import { daysMarketQuery, formatMoney, formatNumber } from "@/lib/utils";
-import PriceChange from "@/ui/price-change";
+import PercentChange from "@/ui/percent-change";
 
 import React, { ReactNode } from "react";
 
@@ -20,9 +20,9 @@ export default async function CoinInfo({
         title="Market Cap"
         value={
           <>
-            <PriceChange
+            <PercentChange
               cName="text-sm"
-              price={
+              percent={
                 data.market_data[
                   `price_change_percentage_${dayKey}` as `price_change_percentage_${CoinDayKey}`
                 ]

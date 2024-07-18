@@ -8,6 +8,8 @@ interface Coin {
   large: string;
 }
 
+type SearchCoinObject = Coin;
+
 interface Exchange {
   id: string;
   name: string;
@@ -21,12 +23,7 @@ interface Category {
   name: string;
 }
 
-interface NFT {
-  id: string;
-  name: string;
-  symbol: string;
-  thumb: string;
-}
+type NFT = Omit<Exchange, "market_type">;
 
 interface SearchResult {
   coins: Coin[];
@@ -34,14 +31,4 @@ interface SearchResult {
   icos: string[];
   categories: Category[];
   nfts: NFT[];
-}
-
-interface SearchCoinObject {
-  id: string;
-  name: string;
-  api_symbol: string;
-  symbol: string;
-  market_cap_rank: number;
-  thumb: string;
-  large: string;
 }
