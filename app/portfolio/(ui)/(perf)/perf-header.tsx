@@ -1,4 +1,4 @@
-import { fetchMarketPerf } from "@/lib/fetching";
+import { fetchMarketPortfolio } from "@/lib/fetching";
 import { calculateValueChange, formatMoney } from "@/lib/utils";
 import PercentChange from "@/ui/percent-change";
 import PriceChange from "@/ui/price-change";
@@ -6,7 +6,7 @@ import PriceChange from "@/ui/price-change";
 import React from "react";
 
 export default async function PerfHeader() {
-  const data: APIMarketData = await fetchMarketPerf(
+  const data: APIMarketData = await fetchMarketPortfolio(
     "&ids=bitcoin,ripple&price_change_percentage=24h",
   );
 

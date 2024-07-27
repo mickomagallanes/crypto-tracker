@@ -73,7 +73,9 @@ export async function fetchSearch(searchQuery: string): Promise<SearchResult> {
   return await fetchWithError<SearchResult>(url, option);
 }
 
-export async function fetchMarketPerf(query: string): Promise<APIMarketData> {
+export async function fetchMarketPortfolio(
+  query: string,
+): Promise<APIMarketData> {
   const url = `${process.env.API_URL}/coins/markets?vs_currency=usd${query}
       &per_page=250&
       order=market_cap_rank&x_cg_demo_api_key=${process.env.API_KEY}`;

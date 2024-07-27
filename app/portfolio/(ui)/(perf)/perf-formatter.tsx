@@ -1,5 +1,5 @@
 "use client";
-import { LineChart, LineChart2 } from "@/ui/line-chart";
+import { LineChart2 } from "@/ui/line-chart";
 
 import { ChartData } from "chart.js";
 import React from "react";
@@ -12,7 +12,7 @@ export default function PerfFormatter({
   labels: string[];
 }) {
   return (
-    <div className="h-[350px] ">
+    <div className="h-[275px] w-full">
       <LineChart2
         datasets={datasets}
         labels={labels}

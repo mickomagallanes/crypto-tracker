@@ -1,11 +1,19 @@
 import { create } from "zustand";
 
-interface PortfolioState {
-  bears: number;
-  increase: (by: number) => void;
+interface Holding {
+  symbol: string;
+  quantity: number;
 }
 
-const useBearStore = create<PortfolioState>()((set) => ({
-  bears: 0,
-  increase: (by) => set((state) => ({ bears: state.bears + by })),
+interface Portfolio {
+  holdings: Holding[];
+  addNewHoldings: (symbol: string, quantity: number) => void;
+}
+
+export const usePortfolioStore = create<Portfolio>()((set) => ({
+  holdings: [],
+  addNewHoldings: (symbol, number) =>
+    set((state) => ({
+      holdings: [...state.holdings, { symbol: symbol, quantity: number }],
+    })),
 }));

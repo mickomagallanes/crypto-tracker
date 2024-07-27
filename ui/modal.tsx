@@ -33,9 +33,9 @@ export default function Modal({
         aria-hidden="true"
         className={cn(
           `fixed inset-0 z-50 max-h-full 
-           w-full items-center justify-center overflow-y-auto overflow-x-hidden 
-           bg-gray-900/70 
-           transition-all sm:p-6 lg:py-12`,
+           w-full items-center justify-center overflow-y-auto 
+           overflow-x-hidden bg-gray-900/70 transition-all
+           sm:p-6 lg:py-12`,
           !isOpen && "hidden",
         )}
       >

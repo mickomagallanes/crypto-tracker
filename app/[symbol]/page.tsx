@@ -2,10 +2,10 @@ import React, { Suspense } from "react";
 import CoinChart from "./(ui)/coin-chart";
 import ChartSkeleton from "@/ui/skeleton/chart-skeleton";
 import CoinHeader from "./(ui)/coin-header";
-import DaysTabs from "./(ui)/days-tabs";
 import HeaderSkeleton from "./(skeleton)/header-skeleton";
 import CoinInfo from "./(ui)/coin-info";
 import InfoSkeleton from "./(skeleton)/info-skeleton";
+import DaysTabs from "@/ui/days-tabs";
 
 export default function Symbol({
   params,
