@@ -2,7 +2,13 @@ import React, { Suspense } from "react";
 import Performance from "./(ui)/(perf)";
 
 import Holdings from "./(ui)/(holdings)";
-import AddHoldingsBtn from "./(ui)/(add)/add-holdings";
+import AddHoldingsForm from "./(ui)/(add)/add-holdings-form";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AddHoldings from "./(ui)/(add)/add-holdings";
+
+// Create a client
+const queryClient = new QueryClient();
+
 export default function Portfolio({
   params,
   searchParams,
@@ -28,7 +34,7 @@ export default function Portfolio({
       </div>
 
       <div className="flex flex-col items-center justify-center">
-        <AddHoldingsBtn />
+        <AddHoldings />
       </div>
     </div>
   );

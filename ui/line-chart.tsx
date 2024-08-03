@@ -188,6 +188,9 @@ const generateChartOptions = (
     },
   },
   plugins: {
+    legend: {
+      display: false, // Hide default legend
+    },
     tooltip: {
       enabled: false,
       external: externalTooltipHandler,

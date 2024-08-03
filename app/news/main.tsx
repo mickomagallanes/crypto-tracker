@@ -1,9 +1,9 @@
 import React from "react";
 
-import useSearch from "@/ui/hooks/useSearch";
 import NewsCards from "@/app/news/(ui)/news-cards";
 import { fetchNewsData } from "@/lib/fetching";
 import NoData from "@/ui/no-data";
+import checkAndGetSearch from "@/lib/checkAndGetSearch";
 
 export default async function Main({
   searchQuery,
@@ -12,7 +12,8 @@ export default async function Main({
   searchQuery: string;
   searchWord: string;
 }) {
-  const searchData: Nullable<SearchResult> = await useSearch(searchQuery);
+  const searchData: Nullable<SearchResult> =
+    await checkAndGetSearch(searchQuery);
   let newsQuery = !searchWord
     ? "q=crypto OR bitcoin"
     : `q="${searchWord}" AND crypto`;

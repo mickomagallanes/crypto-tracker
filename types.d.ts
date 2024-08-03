@@ -1,3 +1,3 @@
-type strOrNull = string | null;
-type numOrNull = number | null;
 type Nullable<T> = T | null;
+type strOrNull = Nullable<string>;
+type numOrNull = Nullable<number>;

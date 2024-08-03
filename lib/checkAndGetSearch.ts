@@ -1,6 +1,6 @@
 import { fetchSearch } from "@/lib/fetching";
 
-export default async function useSearch(
+export default async function checkAndGetSearch(
   searchQuery: string,
 ): Promise<Nullable<SearchResult>> {
   if (searchQuery === "") {

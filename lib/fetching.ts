@@ -1,4 +1,4 @@
-import "server-only";
+// import "server-only"; TODO: temporary, move or create new functions used by react query
 
 export const GET_OPTIONS = {
   method: "GET",

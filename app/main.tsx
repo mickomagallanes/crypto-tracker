@@ -1,10 +1,11 @@
 import React from "react";
 import HomeTable from "./home-table";
-import useSearch from "@/ui/hooks/useSearch";
 import { fetchMarketData } from "@/lib/fetching";
+import checkAndGetSearch from "@/lib/checkAndGetSearch";
 
 export default async function Main({ searchQuery }: { searchQuery: string }) {
-  const searchData: Nullable<SearchResult> = await useSearch(searchQuery);
+  const searchData: Nullable<SearchResult> =
+    await checkAndGetSearch(searchQuery);
   let marketQuery = "";
 
   if (searchData !== null && searchData.coins?.length > 0) {

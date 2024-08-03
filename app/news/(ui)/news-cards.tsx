@@ -13,7 +13,7 @@ export default function NewsCards({
   newsData = null,
   isLoading = false,
 }: {
-  newsData?: NewsArticle[] | null;
+  newsData?: Nullable<NewsArticle[]>;
   isLoading?: boolean;
 }) {
   return (
