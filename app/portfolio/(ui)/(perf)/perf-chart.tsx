@@ -6,10 +6,13 @@ import PerfFormatter from "./perf-formatter";
 export default async function PerfChart() {
   const coinsPriceArr = [];
   const coinsList = ["bitcoin", "ripple"];
+  // TODO: data from store
   const holds = { bitcoin: 0.005, ripple: 1038.1 };
   type HoldKeys = keyof typeof holds;
 
+  // to calculate the total dollar value in the current selected day
   for (const coin of coinsList) {
+    // TODO: dynamic day from daytab
     const data: APIHistData = await fetchHistData(coin, "1");
 
     const dollarHistArr = data.prices.reduce(

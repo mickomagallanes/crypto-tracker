@@ -1,10 +1,11 @@
 import React from "react";
-import { Card, CardLoading } from "../../../ui/card";
+import Card from "../../../ui/card";
+import CardSkeleton from "@/ui/skeleton/card-skeleton";
 
 function generateLoadingCells() {
   const loadingCard = [];
   for (let i = 0; i < 8; i++) {
-    loadingCard.push(<CardLoading />);
+    loadingCard.push(<CardSkeleton />);
   }
   return loadingCard;
 }

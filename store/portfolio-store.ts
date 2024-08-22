@@ -9,16 +9,51 @@ interface Holding {
 interface Portfolio {
   holdings: Holding[];
   addNewHoldings: (symbol: string, quantity: number) => void;
+  getHoldingsAsQuery: () => string;
 }
 
 export const usePortfolioStore = create<Portfolio>()(
   persist(
-    (set) => ({
+    (set, get) => ({
+      // holdings object structure: {symbol: string, quantity: number}
+      // NOTE: symbol is now id of the coin
       holdings: [],
-      addNewHoldings: (symbol, number) =>
-        set((state) => ({
-          holdings: [...state.holdings, { symbol: symbol, quantity: number }],
-        })),
+      addNewHoldings: (symbol, quantity) =>
+        set((state) => {
+          const foundIndex = state.holdings.findIndex(
+            (objHold) => objHold.symbol === symbol,
+          );
+
+          if (foundIndex !== -1) {
+            const updatedHoldings = state.holdings.map((holding, index) =>
+              index === foundIndex
+                ? {
+                    symbol: holding.symbol,
+                    quantity: holding.quantity + quantity,
+                  }
+                : holding,
+            );
+            return { holdings: updatedHoldings };
+          } else {
+            return {
+              holdings: [
+                ...state.holdings,
+                {
+                  symbol: symbol,
+                  quantity: quantity,
+                },
+              ],
+            };
+          }
+        }),
+      getHoldingsAsQuery: () => {
+        return get().holdings.reduce(
+          (acc: string, current: Holding, idx: number) => {
+            return acc + `${idx > 0 ? "&" : ""}coins=${current.symbol}`;
+          },
+          "",
+        );
+      },
     }),
     {
       name: "holdings",

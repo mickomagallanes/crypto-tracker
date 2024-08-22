@@ -12,7 +12,7 @@ export const formatNumber = (value: number | null): string => {
 };
 
 export const formatMoney = (value: number | null): string => {
-  if (value === null) {
+  if (value === null || value === 0) {
     return `$0`;
   }
 

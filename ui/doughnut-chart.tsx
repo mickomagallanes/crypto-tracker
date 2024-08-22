@@ -62,6 +62,7 @@ export function DoughnutChart({
     },
   };
 
+  // TODO: when hovering doughnut, it exceeds the box and some parts become not visible
   return (
     <div className="relative flex size-full flex-col items-center justify-center">
       <Doughnut data={data} options={options} />
