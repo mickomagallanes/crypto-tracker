@@ -36,7 +36,7 @@ export default async function Holdings() {
           <HoldList />
         </Suspense>
 
-        <DaysTabs />
+        <DaysTabs paramKey="daysHoldings" />
         {/* <PerfModal /> */}
       </div>
     </>

@@ -2,14 +2,12 @@
 import React, { Suspense } from "react";
 import PerfChart from "./perf-chart";
 import DaysTabs from "@/ui/days-tabs";
-// import PerfModal from "./perf-modal";
 import PerfHeaderWrap from "./perf-header-wrap";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
 export default function Performance() {
-  // TODO: use "perf-days" and "pie-days" as param in url
   return (
     <>
       <QueryClientProvider client={queryClient}>
@@ -17,11 +15,10 @@ export default function Performance() {
           <PerfHeaderWrap />
 
           <Suspense key={"test2"} fallback={"Loading..."}>
-            {/* <PerfChart /> */}
+            <PerfChart />
           </Suspense>
 
-          <DaysTabs />
-          {/* <PerfModal /> */}
+          <DaysTabs paramKey="daysPerformance" />
         </div>
       </QueryClientProvider>
     </>

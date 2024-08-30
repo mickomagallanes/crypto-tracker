@@ -2,12 +2,14 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React from "react";
 
-export default function DaysTabs() {
+export default function DaysTabs({ paramKey = "days" }: { paramKey?: string }) {
   const searchParams = useSearchParams();
-  const currentDays = searchParams.get("days");
 
+  const currentDays = searchParams.get(paramKey);
+  const router = useRouter();
   const pathname = usePathname();
 
   const isActive = (dayValue: string) => {
@@ -21,38 +23,48 @@ export default function DaysTabs() {
     }
   };
 
+  const onClickLink = (paramValue: string) => {
+    const updatedSearchParams = new URLSearchParams(searchParams.toString());
+
+    // Add or update a new query parameter while keeping the existing ones
+    updatedSearchParams.set(paramKey, paramValue);
+
+    // Programmatically push the new URL with updated search params
+    router.push(`${pathname}?${updatedSearchParams.toString()}`);
+  };
+
   return (
     <div className="flex w-max flex-row flex-wrap gap-2 rounded-lg bg-gray-800 p-1 text-center text-sm md:text-base">
-      <Link
-        className={cn("m-auto rounded-md py-1", isActive("1"))}
-        href={`${pathname}?days=1`}
+      <span
+        className={cn("m-auto cursor-pointer rounded-md py-1", isActive("1"))}
+        onClick={() => onClickLink("1")}
       >
         1D
-      </Link>
-      <Link
-        className={cn("m-auto rounded-md py-1", isActive("7"))}
-        href={`${pathname}?days=7`}
+      </span>
+      <span
+        className={cn("m-auto cursor-pointer rounded-md py-1", isActive("7"))}
+        onClick={() => onClickLink("7")}
       >
         7D
-      </Link>
-      <Link
-        className={cn("m-auto rounded-md py-1", isActive("30"))}
-        href={`${pathname}?days=30`}
+      </span>
+      <span
+        className={cn("m-auto cursor-pointer rounded-md py-1", isActive("30"))}
+        onClick={() => onClickLink("30")}
       >
         1M
-      </Link>
-      <Link
-        className={cn("m-auto rounded-md py-1", isActive("60"))}
-        href={`${pathname}?days=60`}
+      </span>
+      <span
+        className={cn("m-auto cursor-pointer rounded-md py-1", isActive("200"))}
+        onClick={() => onClickLink("200")}
       >
-        2M
-      </Link>
-      <Link
-        className={cn("m-auto rounded-md py-1", isActive("365"))}
-        href={`${pathname}?days=365`}
+        200D
+      </span>
+      <span
+        className={cn("m-auto cursor-pointer rounded-md py-1", isActive("365"))}
+        onClick={() => onClickLink("365")}
       >
         1Y
-      </Link>
+      </span>
     </div>
   );
 }

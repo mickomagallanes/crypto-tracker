@@ -73,7 +73,7 @@ export async function fetchSearch(searchQuery: string): Promise<SearchResult> {
   return await fetchWithError<SearchResult>(url, option);
 }
 
-export async function fetchMarketPortfolio(
+export async function fetchPortfolioMarket(
   query: string,
 ): Promise<APIMarketData> {
   const url = `/api/portfolio/market?${query}`;
@@ -87,4 +87,13 @@ export async function fetchPortfolioSearch(
   const url = `/api/portfolio/search?searchQuery=${query}`;
 
   return await fetchWithError<APIMarketData>(url);
+}
+
+export async function fetchPortfolioHistory(
+  symbol: string,
+  days: string,
+): Promise<APIHistData> {
+  const url = `/api/portfolio/history?symbol=${symbol}&days=${days}`;
+
+  return await fetchWithError<APIHistData>(url);
 }

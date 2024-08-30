@@ -2,7 +2,8 @@ import { queryOptions } from "@tanstack/react-query";
 import checkAndGetSearch from "./checkAndGetSearch";
 import {
   fetchMarketData,
-  fetchMarketPortfolio,
+  fetchPortfolioHistory,
+  fetchPortfolioMarket,
   fetchPortfolioSearch,
 } from "./fetching";
 
@@ -22,8 +23,25 @@ export function portfolioMarket(query: string) {
   return queryOptions({
     queryKey: ["portfolioMarket", query],
     queryFn: async () => {
-      const data: APIMarketData = await fetchMarketPortfolio(query);
+      const data: APIMarketData = await fetchPortfolioMarket(query);
       return data;
+    },
+  });
+}
+
+export function portfolioHistory(holdings: string[], days: string) {
+  return queryOptions({
+    queryKey: ["portfolioHistory", days],
+    queryFn: async () => {
+      // Create an array of fetch promises
+      const fetchPromises = holdings.map(async (symbol) => ({
+        data: await fetchPortfolioHistory(symbol, days),
+        symbol: symbol,
+      }));
+
+      // Use Promise.all to wait for all the fetch promises to complete
+      const responses = await Promise.all(fetchPromises);
+      return responses;
     },
   });
 }

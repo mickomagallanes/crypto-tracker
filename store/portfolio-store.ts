@@ -10,6 +10,7 @@ interface Portfolio {
   holdings: Holding[];
   addNewHoldings: (symbol: string, quantity: number) => void;
   getHoldingsAsQuery: () => string;
+  getUniqueSymbols: () => string[];
 }
 
 export const usePortfolioStore = create<Portfolio>()(
@@ -53,6 +54,11 @@ export const usePortfolioStore = create<Portfolio>()(
           },
           "",
         );
+      },
+      getUniqueSymbols: () => {
+        return get()
+          .holdings.map((item) => item.symbol)
+          .filter((value, index, self) => self.indexOf(value) === index);
       },
     }),
     {

@@ -18,6 +18,12 @@ interface MarketObject {
   low_24h: number;
   price_change_24h: number;
   price_change_percentage_24h: number;
+  price_change_percentage_24h_in_currency: number;
+  price_change_percentage_7d_in_currency: number;
+  price_change_percentage_30d_in_currency: number;
+  price_change_percentage_60d_in_currency: number;
+  price_change_percentage_200d_in_currency: number;
+  price_change_percentage_1y_in_currency: number;
   market_cap_change_24h: number;
   market_cap_change_percentage_24h: number;
   circulating_supply: number;
@@ -45,7 +51,7 @@ interface TransformedMarket {
   "24h": numOrNull;
 }
 
-type CoinDayKey = "24h" | "7d" | "30d" | "60d" | "1y";
+type CoinDayKey = "24h" | "7d" | "30d" | "60d" | "200d" | "1y";
 
 interface CoinImage {
   thumb: string;
