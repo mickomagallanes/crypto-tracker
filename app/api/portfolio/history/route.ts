@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   if (symbolQuery !== null && daysQuery !== null) {
     const urlMarket = `${process.env.API_URL}/coins/${symbolQuery}/market_chart?days=${daysQuery}&vs_currency=usd&x_cg_demo_api_key=${process.env.API_KEY}`;
 
-    const respMarket = await fetch(urlMarket);
+    const respMarket = await fetch(urlMarket, { cache: "no-store" });
 
     const data = await respMarket.json();
 

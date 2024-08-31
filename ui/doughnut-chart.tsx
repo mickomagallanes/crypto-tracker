@@ -12,7 +12,7 @@ import {
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-interface Dataset {
+export interface DoughnutDataset {
   data: number[];
   backgroundColor: string[];
   borderColor: string[];
@@ -23,7 +23,7 @@ export function DoughnutChart({
   dataset,
 }: {
   labels: string[];
-  dataset: Dataset;
+  dataset: DoughnutDataset;
 }) {
   const data = {
     labels: labels,
@@ -57,6 +57,13 @@ export function DoughnutChart({
               backgroundColor: backgroundColor,
             };
           },
+          label: function (context) {
+            console.log(context, " context");
+            return "dogsssssss";
+          },
+          title: function (context) {
+            return "Trump";
+          },
         },
       },
     },
@@ -64,7 +71,7 @@ export function DoughnutChart({
 
   // TODO: when hovering doughnut, it exceeds the box and some parts become not visible
   return (
-    <div className="relative flex size-full flex-col items-center justify-center">
+    <div className="relative flex size-[320px] flex-col items-center justify-center">
       <Doughnut data={data} options={options} />
     </div>
   );

@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
 
     const urlMarket = `${process.env.API_URL}/coins/markets?vs_currency=usd${marketQuery}${daysParam}&per_page=250&order=market_cap_rank&x_cg_demo_api_key=${process.env.API_KEY}`;
 
-    const respMarket = await fetch(urlMarket);
+    const respMarket = await fetch(urlMarket, { cache: "no-store" });
 
     const data = await respMarket.json();
 

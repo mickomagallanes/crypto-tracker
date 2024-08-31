@@ -10,18 +10,16 @@ import PerfHeaderSkeleton from "../../(skeleton)/(perf)/perf-header-skeleton";
 
 export default function PerfHeader({
   data,
-  mainPriceData, // this exists because CoinGecko api returns false data on current_price from diff timeframes
   isLoading,
   days,
 }: {
   data: APIMarketData | [];
-  mainPriceData: APIMarketData | [];
   isLoading: boolean;
   days: string;
 }) {
   const holdings = usePortfolioStore((state) => state.holdings);
 
-  const price = mainPriceData.reduce((acc, val) => {
+  const price = data.reduce((acc, val) => {
     const holding = holdings.find((h) => h.symbol === val.id); // Find the holding by symbol
     return acc + (holding ? holding.quantity * val.current_price : 0);
   }, 0);

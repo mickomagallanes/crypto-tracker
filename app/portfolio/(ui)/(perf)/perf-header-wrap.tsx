@@ -26,13 +26,10 @@ export default function PerfHeaderWrap() {
 
   const { data, isLoading } = useQuery(portfolioMarket(marketQuery));
 
-  const { data: dataMainPrice } = useQuery(portfolioMarket(coinsQuery));
-
   return (
     <>
       <PerfHeader
         data={data ?? []}
-        mainPriceData={dataMainPrice ?? []}
         isLoading={isLoading}
         days={daysFormatted}
       />

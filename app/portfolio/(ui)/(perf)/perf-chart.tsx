@@ -21,7 +21,7 @@ export default function PerfChart() {
   const { data, isLoading } = useQuery(
     portfolioHistory(currentSymbols, currentDays),
   );
-
+  console.log(data, " dooggggggggggggssssssssss");
   if (data === undefined || isLoading) {
     return <ChartSkeleton />;
   } else {
