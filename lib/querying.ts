@@ -1,7 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import checkAndGetSearch from "./checkAndGetSearch";
 import {
-  fetchMarketData,
   fetchPortfolioHistory,
   fetchPortfolioMarket,
   fetchPortfolioSearch,

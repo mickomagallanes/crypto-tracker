@@ -1,23 +1,9 @@
-import React, { Suspense } from "react";
 import Performance from "./(ui)/(perf)";
 
-import Holdings from "./(ui)/(holdings)";
-import AddHoldingsForm from "./(ui)/(add)/add-holdings-form";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AddHoldings from "./(ui)/(add)/add-holdings";
+import Holdings from "./(ui)/(holdings)";
 
-// Create a client
-const queryClient = new QueryClient();
-
-export default function Portfolio({
-  params,
-  searchParams,
-}: {
-  params: { symbol: string };
-  searchParams: { days: string };
-}) {
-  const daysQuery = searchParams.days ? `days=${searchParams.days}` : "";
-
+export default function Portfolio() {
   return (
     <div
       className="mt-2 flex flex-col gap-12 px-2 sm:px-3 md:px-4 

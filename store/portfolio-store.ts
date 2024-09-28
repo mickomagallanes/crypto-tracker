@@ -9,8 +9,9 @@ interface Holding {
 interface Portfolio {
   holdings: Holding[];
   addNewHoldings: (symbol: string, quantity: number) => void;
-  getHoldingsAsQuery: () => string;
+  // getHoldingsAsQuery: () => string;
   getUniqueSymbols: () => string[];
+  computed: { holdingsAsQuery: string };
 }
 
 export const usePortfolioStore = create<Portfolio>()(
@@ -18,8 +19,20 @@ export const usePortfolioStore = create<Portfolio>()(
     (set, get) => ({
       // holdings object structure: {symbol: string, quantity: number}
       // NOTE: symbol is now id of the coin
+      // TODO: convert this to hashmap, for it is better
       holdings: [],
-      addNewHoldings: (symbol, quantity) =>
+      computed: {
+        // assumed that the only changing store here is holdings
+        get holdingsAsQuery() {
+          return get().holdings.reduce(
+            (acc: string, current: Holding, idx: number) => {
+              return acc + `${idx > 0 ? "&" : ""}coins=${current.symbol}`;
+            },
+            "",
+          );
+        },
+      },
+      addNewHoldings: (symbol, quantity) => {
         set((state) => {
           const foundIndex = state.holdings.findIndex(
             (objHold) => objHold.symbol === symbol,
@@ -46,15 +59,9 @@ export const usePortfolioStore = create<Portfolio>()(
               ],
             };
           }
-        }),
-      getHoldingsAsQuery: () => {
-        return get().holdings.reduce(
-          (acc: string, current: Holding, idx: number) => {
-            return acc + `${idx > 0 ? "&" : ""}coins=${current.symbol}`;
-          },
-          "",
-        );
+        });
       },
+
       getUniqueSymbols: () => {
         return get()
           .holdings.map((item) => item.symbol)

@@ -1,15 +1,30 @@
 "use client";
+import Button from "@/ui/button";
+import useToggle from "@/ui/hooks/useToggle";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import React from "react";
-import AddHoldingsForm from "./add-holdings-form";
+import { Plus } from "lucide-react";
+import AddHoldingsModal from "./add-holdings-modal";
 
 const queryClient = new QueryClient();
 
-// TODO: maybe you dont need this component, just do the query provider on the holdings form
 export default function AddHoldings() {
+  const [isModalOpen, modalToggle] = useToggle();
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <AddHoldingsForm />
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <Button
+          onClick={() => modalToggle()}
+          label="New Transaction"
+          icon={<Plus />}
+        />
+        {isModalOpen && (
+          <AddHoldingsModal
+            isModalOpen={isModalOpen}
+            modalToggle={modalToggle}
+          />
+        )}
+      </QueryClientProvider>
+    </>
   );
 }

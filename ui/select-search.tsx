@@ -1,8 +1,8 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import React, { FormEvent, useState } from "react";
 import useToggle from "./hooks/useToggle";
-import { cn } from "@/lib/utils";
 
 interface SelectSearchOptions {
   label: string;
@@ -71,7 +71,7 @@ export default function SelectSearch({
               key={opt.value}
               label={opt.label}
               value={opt.value}
-              imgSrc={opt.imgSrc}
+              imgSrc={opt.imgSrc ?? ""}
             />
           ))
         ) : (
@@ -86,7 +86,7 @@ const Option = ({
   label,
   value,
   onClick,
-  imgSrc = null,
+  imgSrc = "",
 }: SelectSearchOptions & { onClick: (val: PassedInput) => void }) => {
   return (
     <div
@@ -98,7 +98,7 @@ const Option = ({
         className="m-1 ml-2 mr-0 flex size-4 w-7 items-center 
           justify-center rounded-full "
       >
-        <img className="rounded-full" alt={label} src={imgSrc} />
+        <img className="rounded-full" alt={label} src={imgSrc ?? ""} />
       </div>
 
       <div className="flex w-full items-center">

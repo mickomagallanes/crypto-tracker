@@ -1,5 +1,5 @@
+"use client";
 import PercentChange from "@/ui/percent-change";
-import React from "react";
 
 export default function HoldList() {
   return (

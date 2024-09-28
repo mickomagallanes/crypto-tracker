@@ -1,14 +1,14 @@
 "use client";
-import React from "react";
-import { Doughnut } from "react-chartjs-2";
+import { formatMoney } from "@/lib/utils";
 import {
-  Chart as ChartJS,
   ArcElement,
-  Tooltip,
-  Legend,
-  TooltipItem,
+  Chart as ChartJS,
   ChartOptions,
+  Legend,
+  Tooltip,
+  TooltipItem,
 } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -59,10 +59,10 @@ export function DoughnutChart({
           },
           label: function (context) {
             console.log(context, " context");
-            return "dogsssssss";
+            return formatMoney(context.raw);
           },
           title: function (context) {
-            return "Trump";
+            return context[0].label;
           },
         },
       },

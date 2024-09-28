@@ -44,18 +44,14 @@ export default function AddHoldingsModal({
     <Modal header="Add Coin" isOpen={isModalOpen} onClose={() => modalToggle()}>
       <div className="flex flex-col gap-3">
         <div>
-          <label htmlFor="email" className="mb-2 text-sm font-medium ">
-            Coin
-          </label>
+          <label className="mb-2 text-sm font-medium">Coin</label>
           <SelectSearch
             options={selectOptions}
             onInput={(value) => setSymbol(value as string)}
           />
         </div>
         <div>
-          <label htmlFor="password" className="mb-2 text-sm font-medium ">
-            Quantity
-          </label>
+          <label className="mb-2 text-sm font-medium">Quantity</label>
           <input
             type="number"
             className="w-full rounded-lg border p-2.5 text-sm text-[#2E2E2E]"

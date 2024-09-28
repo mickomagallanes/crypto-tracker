@@ -1,9 +1,8 @@
 "use client";
-import React, { Suspense } from "react";
-import PerfChart from "./perf-chart";
 import DaysTabs from "@/ui/days-tabs";
-import PerfHeaderWrap from "./perf-header-wrap";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import PerfChart from "./perf-chart";
+import PerfHeaderWrap from "./perf-header-wrap";
 
 const queryClient = new QueryClient();
 
@@ -14,9 +13,7 @@ export default function Performance() {
         <div className="flex flex-col items-center gap-10">
           <PerfHeaderWrap />
 
-          <Suspense key={"test2"} fallback={"Loading..."}>
-            <PerfChart />
-          </Suspense>
+          <PerfChart />
 
           <DaysTabs paramKey="daysPerformance" />
         </div>

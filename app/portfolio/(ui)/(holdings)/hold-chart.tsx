@@ -1,11 +1,17 @@
-import React from "react";
+"use client";
 import { DoughnutChart, DoughnutDataset } from "@/ui/doughnut-chart";
 
-export default function HoldChart({ dataset }: { dataset: DoughnutDataset }) {
+export default function HoldChart({
+  dataset,
+  labels,
+}: {
+  dataset: DoughnutDataset;
+  labels: string[];
+}) {
   return (
     <>
       <div className="flex items-center align-middle">
-        <DoughnutChart dataset={dataset} labels={["XRP", "BTC"]} />
+        <DoughnutChart dataset={dataset} labels={labels} />
       </div>
     </>
   );
